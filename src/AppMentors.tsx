@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 type mentor = {
     name: string | null;
-    title: string;
+    title: string | null;
 }
 type person = {
     name: string;
@@ -51,8 +51,29 @@ export default function AppMentor() {
       >
         멘토의 이름을 바꾸기
       </button>
-      <button>멘토 추가하기</button>
-      <button>멘토 삭제하기</button>
+      <button
+          onClick={() => {
+              const name = prompt('추가할 멘토의 이름은 무엇인가요?')! as string | null;
+              const title = prompt('멘토의 타이틀은 무엇인가요?')! as string | null;
+              const newMentor: mentor = {
+                  name,
+                  title,
+              }
+              const newMentors: mentor[] = [...person.mentors];
+              newMentors.push(newMentor);
+              setPerson((person) => ({...person, mentors:newMentors}))
+          }}
+      >멘토 추가하기</button>
+      <button
+          onClick={() => {
+              const name = prompt('삭제할 멘토의 이름은 무엇인가요?')! as string | null;
+              const newMentors: mentor[] = [];
+              person.mentors.forEach(mentor => {
+                  if(mentor.name !== name) newMentors.push(mentor);
+              })
+              setPerson((person) => ({...person,mentors:newMentors}));
+          }}
+      >멘토 삭제하기</button>
     </div>
   );
 }

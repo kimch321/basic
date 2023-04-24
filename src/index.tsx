@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import AppCard from "./AppCard";
+import AppProducts from "./basic/AppProducts";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root')! as HTMLElement);
 root.render(
   <React.StrictMode>
-    <AppCard/>
+    <AppProducts />
   </React.StrictMode>
 );
 

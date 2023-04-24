@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import personReducer from "./person-reducer";
+import personReducer from "./reducer/person-reducer";
 
 type mentor = {
     name?: string | null;
@@ -10,6 +10,21 @@ type person = {
     title: string;
     mentors: mentor[];
 }
+
+const initialPerson: person = {
+    name: '엘리',
+    title: '개발자',
+    mentors: [
+        {
+            name: '밥',
+            title: '시니어개발자',
+        },
+        {
+            name: '제임스',
+            title: '시니어개발자',
+        },
+    ],
+};
 
 export default function AppMentor() {
     const [person, dispatch] = useReducer(personReducer,initialPerson);
@@ -48,18 +63,3 @@ export default function AppMentor() {
     </div>
   );
 }
-
-const initialPerson: person = {
-    name: '엘리',
-    title: '개발자',
-    mentors: [
-        {
-            name: '밥',
-            title: '시니어개발자',
-        },
-        {
-            name: '제임스',
-            title: '시니어개발자',
-        },
-    ],
-};

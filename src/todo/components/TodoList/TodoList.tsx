@@ -1,27 +1,23 @@
-import React, {useState} from "react";
-import styles from "./TodoList.module.css"
+import React, { useState } from "react";
+import AddTodo from "../AddTodo/AddTodo";
 
 type todo = {
     id: string;
     text: string;
     status: string;
 }
-// addTodo: 1. 빈값 입력 불가. 2. 공백 제거 3. 플레이스 홀더: Add Todo
 
 export default function TodoList() {
     const [todos, setTodos] = useState<todo[]>([
         {id: '123', text: '장보기', status: 'active'},
         {id: '124', text: '운동하기', status: 'active'},
     ]);
-    const [inputTodo, setInputTodo] = useState("");
 
-    function handleChange (e: any) {
-        const { value } = e.target
-        setInputTodo(value);
-    }
-
-    function handleClick () {
-
+    function onAdd(text: string) {
+        setTodos((prev) => [...prev,
+            {id: String(Number(todos[todos.length - 1].id) + 1),
+                text: text.trim(), status: "active"}
+        ])
     }
 
     return (
@@ -35,8 +31,7 @@ export default function TodoList() {
                     </li>)
                 }
             </ul>
-            <input type="text" placeholder=" Add Todo" onChange={handleChange} value={inputTodo} className={styles.addTodoInput} id="addTodoInput"/>
-            <button type="button" className={styles.addBtn} onClick={handleClick}>Add</button>
+            <AddTodo onAdd = {onAdd} />
         </section>
     )
 }

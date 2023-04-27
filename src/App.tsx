@@ -1,16 +1,10 @@
 import React from "react";
-import Button2 from "./components/Button2";
-import Button1 from "./components/Button1";
-import StyleComponent from "./StyleComponent";
-import TailwindComponent from "./TailwindComponent";
-
+import './App.css';
+import TodoList from "./todo/components/TodoList/TodoList";
 export default function App() {
     return(
         <>
-            <Button1 />
-            <Button2 />
-            <StyleComponent />
-            <TailwindComponent />
+            <TodoList />
         </>
     )
 }

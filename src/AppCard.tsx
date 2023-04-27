@@ -20,9 +20,7 @@ export default function AppCard() {
 }
 
 
-
-
-function Card({ children } : { children : ReactNode }) {
+function Card({children}: { children: ReactNode }) {
     return (
         <div
             style={{

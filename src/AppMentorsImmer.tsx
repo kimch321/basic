@@ -1,5 +1,5 @@
 import React from 'react';
-import { useImmer } from 'use-immer';
+import {useImmer} from 'use-immer';
 
 type mentor = {
     name: string | null;

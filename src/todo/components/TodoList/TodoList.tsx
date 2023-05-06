@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
+import styles from "./TodoList.module.css"
+import {DarkModeContext} from "../../states/DarkModeContext";
+import {BsFillSunFill, BsMoonFill} from "react-icons/bs";
 
 type TodoListProps = {
     filter: string;
@@ -15,6 +18,7 @@ export default function TodoList({filter}: TodoListProps) {
         {id: '123', text: '장보기', status: 'active'},
         {id: '124', text: '운동하기', status: 'active'},
     ]);
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
     const handleAdd = (todo: todo) => setTodos([...todos, todo]);
     const handleUpdate = (updated: todo) =>
@@ -25,23 +29,20 @@ export default function TodoList({filter}: TodoListProps) {
     const filtered = getFilteredItems(todos, filter);
 
     return (
-        <section>
-
-            <ul>
-                {
-                    filtered.map((item) => (
-                        <Todo
-                            key={item.id}
-                            todo={item}
-                            onUpdate={handleUpdate}
-                            onDelete={handleDelete}
-                        />
-                    ))
-                }
+        <section className={darkMode ? (styles.darkContainer) : (styles.container)}>
+            <ul className={styles.list}>
+                {filtered.map((item) => (
+                    <Todo
+                        key={item.id}
+                        todo={item}
+                        onUpdate={handleUpdate}
+                        onDelete={handleDelete}
+                    />
+                ))}
             </ul>
             <AddTodo
                 onAdd = {handleAdd}
-                nextId = {String(Number(todos[todos.length-1].id) + 1)}
+                nextId = {String(Number(todos[todos.length-1]?.id) + 1)}
             />
         </section>
     )

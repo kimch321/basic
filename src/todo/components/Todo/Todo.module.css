@@ -21,14 +21,6 @@
     font-size: 1.5rem;
 }
 
-.darkText
-{
-    flex: 1 1 0;
-    margin-left: 0.5rem;
-    font-size: 1.5rem;
-    color: var(--color-white);
-}
-
 .icon
 {
     width: 26px;

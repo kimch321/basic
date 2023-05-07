@@ -2,49 +2,25 @@
 {
     display: flex;
     justify-content: space-between;
+    padding: 0 0.5rem;
     align-items: center;
     background-color: var(--color-bg-dark);
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--color-grey);
 }
 
-.darkHeader
+.toggle
 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--dark-color-bg-dark);
-    border-bottom: 1px solid grey;
-}
-
-.mode
-{
-    font-size: 1.4rem;
-    padding-left: 1.0rem;
-    margin: 0.3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
     background-color: transparent;
-    opacity: 0.8;
-    font-weight: bold;
+    color: var(--color-text);
+    transition: all 150ms ease-out;
 }
 
-.mode:hover
+.toggle:hover
 {
-    color: var(--color-accent);
-}
-
-.darkMode
-{
-    font-size: 1.4rem;
-    color: var(--color-accent);
-    padding-left: 1.0rem;
-    margin: 0.3rem;
-    background-color: transparent;
-    opacity: 0.8;
-    font-weight: bold;
-}
-
-.darkMode:hover
-{
-    color: var(--color-white);
+    transform: scale(1.1);
+    color: var(--color-accent)
 }
 
 .filters
@@ -75,29 +51,4 @@
     display: block;
     margin-top: 0.2rem;
     border: 1px solid var(--color-text);
-}
-
-.darkFilter
-{
-    font-size: 1.4rem;
-    margin: 0.3rem;
-    text-transform: capitalize;
-    background-color: transparent;
-    color: var(--color-accent);
-    opacity: 0.8;
-    font-weight: bold;
-}
-
-.darkFilter:hover,
-.darkFilter.selected
-{
-    opacity: 1;
-}
-
-.darkFilter.selected::after
-{
-    content:"";
-    display: block;
-    margin-top: 0.2rem;
-    border: 1px solid var(--dark-color-text);
 }

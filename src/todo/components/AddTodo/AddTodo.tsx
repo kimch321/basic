@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import styles from "./AddTodo.module.css"
-import {DarkModeContext} from "../../states/DarkModeContext";
 
 type todo = {
     id: string;
@@ -14,7 +13,6 @@ type Props = {
 
 export default function AddTodo({ onAdd, nextId }: Props) {
     const [text, setText] = useState("");
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
     function handleChange (e: any) {
         const { value } = e.target
@@ -27,7 +25,7 @@ export default function AddTodo({ onAdd, nextId }: Props) {
     }
 
   return (
-    <form className={darkMode ? (styles.darkForm) : (styles.form)} >
+    <form className={styles.form} >
         <input
             type="text"
             className={styles.input}

@@ -7,12 +7,16 @@
     --color-accent: #f16e03;
     --color-white: white;
     --color-scrollbar: #aaa7a7;
-
-    --dark-color-bg-dark: #1A1B35;
-    --dark-color-text: #A1A2B9;
-    --dark-color-bg: #23243B;
-    --dark-color-grey: #181B30;
 }
+
+html.dark
+{
+    --color-bg-dark: #1A1B35;
+    --color-text: #A1A2B9;
+    --color-bg: #23243B;
+    --color-grey: #181B30;
+}
+
 
 body
 {

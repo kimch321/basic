@@ -6,14 +6,6 @@
     background-color: var(--color-bg-dark);
 }
 
-.darkForm
-{
-    width: 100%;
-    display: flex;
-    padding: 1.4rem 1rem;
-    background-color: var(--dark-color-bg-dark);
-}
-
 .input
 {
     flex: 1 0 auto;

@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {FaTrashAlt} from "react-icons/fa";
-import styles from "./Todo.module.css"
-import {DarkModeContext} from "../../states/DarkModeContext";
+import styles from "./Todo.module.css";
 
 type todo = {
     id: string;
@@ -15,8 +14,8 @@ type TodoProps = {
 }
 
 export default function Todo({todo, onUpdate, onDelete} : TodoProps) {
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
-    const {text,status} = todo;
+    const {id, text,status} = todo;
+
     const handleChange = (e: any) => {
         const status = e.target.checked ? 'completed' : 'active';
         onUpdate({...todo, status})
@@ -26,12 +25,13 @@ export default function Todo({todo, onUpdate, onDelete} : TodoProps) {
     return (
     <li className={styles.todo}>
        <input
+           id = {id}
            className={styles.checkbox}
            type="checkbox"
            checked={status === 'completed'}
            onChange={handleChange}
        />
-        <label htmlFor="checkbox" className={darkMode ? (styles.darkText) : (styles.text)}>{text}</label>
+        <label htmlFor={id} className={styles.text} >{text}</label>
         <span className={styles.icon}>
             <button
                 onClick={handleDelete} className={styles.button}>

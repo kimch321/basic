@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './App.css';
 import TodoList from "./todo/components/TodoList/TodoList";
 import Header from "./todo/components/Header/Header";
-import {DarkModeProvider} from "./todo/states/DarkModeContext";
+import {DarkModeProvider} from "./todo/context/DarkModeContext";
 
 const filters = ['all', 'active', 'completed']
 export default function App() {

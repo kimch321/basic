@@ -1,9 +1,7 @@
-import React, {useContext, useState} from "react";
+import React, {useEffect, useState} from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
-import styles from "./TodoList.module.css"
-import {DarkModeContext} from "../../states/DarkModeContext";
-import {BsFillSunFill, BsMoonFill} from "react-icons/bs";
+import styles from "./TodoList.module.css";
 
 type TodoListProps = {
     filter: string;
@@ -13,12 +11,13 @@ type todo = {
     text: string;
     status: string;
 }
+
 export default function TodoList({filter}: TodoListProps) {
-    const [todos, setTodos] = useState<todo[]>([
-        {id: '123', text: '장보기', status: 'active'},
-        {id: '124', text: '운동하기', status: 'active'},
-    ]);
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
+    const [todos, setTodos] = useState<todo[]>(readTodosFromLocalStorage);
+    // useState는 상태를 저장하고 있습니다.
+    // useState에 함수를 전달하면.
+    // 초기값이 필요한 경우: 함수를 실행하여 초기값을 정합니다.
+    // 초기값이 필요하지 않은 경우: 기존에 저장된 초기값을 사용합니다.
 
     const handleAdd = (todo: todo) => setTodos([...todos, todo]);
     const handleUpdate = (updated: todo) =>
@@ -26,10 +25,13 @@ export default function TodoList({filter}: TodoListProps) {
     const handleDelete = (deleted: todo) =>
         setTodos(todos.filter((t) => t.id !== deleted.id));
 
-    const filtered = getFilteredItems(todos, filter);
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos])
 
+    const filtered = getFilteredItems(todos, filter);
     return (
-        <section className={darkMode ? (styles.darkContainer) : (styles.container)}>
+        <section className={styles.container}>
             <ul className={styles.list}>
                 {filtered.map((item) => (
                     <Todo
@@ -42,7 +44,7 @@ export default function TodoList({filter}: TodoListProps) {
             </ul>
             <AddTodo
                 onAdd = {handleAdd}
-                nextId = {String(Number(todos[todos.length-1]?.id) + 1)}
+                nextId = {String(new Date().getMilliseconds())}
             />
         </section>
     )
@@ -53,4 +55,9 @@ function getFilteredItems(todos: todo[], filter: string): todo[] {
         return todos;
     }
     return todos.filter((todo) => todo.status === filter);
+}
+
+function readTodosFromLocalStorage(): [] {
+    const todos = localStorage.getItem('todos');
+    return todos ? JSON.parse(todos) : [];
 }
